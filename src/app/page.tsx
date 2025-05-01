@@ -1,103 +1,138 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import CirclePicker from '@/components/CirclePicker';
+import CircleDetails from '@/components/CircleDetails';
+
+const circleThemes = {
+  1: { // Limbo
+    bg: "bg-stone-900",
+    text: "text-stone-100",
+    accent: "from-stone-900 to-stone-800"
+  },
+  2: { // Lust
+    bg: "bg-red-900",
+    text: "text-red-100",
+    accent: "from-red-900 to-red-800"
+  },
+  3: { // Gluttony
+    bg: "bg-yellow-900",
+    text: "text-yellow-100",
+    accent: "from-yellow-900 to-yellow-800"
+  },
+  4: { // Greed
+    bg: "bg-amber-900",
+    text: "text-amber-100",
+    accent: "from-amber-900 to-amber-800"
+  },
+  5: { // Wrath
+    bg: "bg-orange-900",
+    text: "text-orange-100",
+    accent: "from-orange-900 to-orange-800"
+  },
+  6: { // Heresy
+    bg: "bg-purple-900",
+    text: "text-purple-100",
+    accent: "from-purple-900 to-purple-800"
+  },
+  7: { // Violence
+    bg: "bg-pink-900",
+    text: "text-pink-100",
+    accent: "from-pink-900 to-pink-800"
+  },
+  8: { // Fraud
+    bg: "bg-indigo-900",
+    text: "text-indigo-100",
+    accent: "from-indigo-900 to-indigo-800"
+  },
+  9: { // Treachery
+    bg: "bg-blue-900",
+    text: "text-blue-100",
+    accent: "from-blue-900 to-blue-800"
+  }
+};
+
+// Dummy data for the circles
+const circlesData = [
+  {
+    id: 1,
+    name: "Limbo",
+    description: "The first circle of Hell, where virtuous non-Christians and unbaptized infants dwell.",
+    featuredSoul: {
+      name: "Virgil",
+      avatar: "",
+      quote: "Through me you pass into the city of woe..."
+    },
+    stats: {
+      severity: 2,
+      regret: 8,
+      defiance: 1
+    },
+    alignment: 30
+  },
+  {
+    id: 2,
+    name: "Lust",
+    description: "Where the lustful are blown about by violent winds, representing their lack of self-control.",
+    featuredSoul: {
+      name: "Francesca da Rimini",
+      avatar: "",
+      quote: "Love, which quickly arrests the gentle heart..."
+    },
+    stats: {
+      severity: 4,
+      regret: 6,
+      defiance: 3
+    },
+    alignment: 60
+  },
+  // Add more circles as needed
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [selectedCircle, setSelectedCircle] = useState(1);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const selectedCircleData = circlesData.find(circle => circle.id === selectedCircle) || circlesData[0];
+  const theme = circleThemes[selectedCircle as keyof typeof circleThemes];
+
+  return (
+    <main className={`min-h-screen transition-colors duration-700 ${theme.bg}`}>
+      <div className="container mx-auto px-4 py-4 h-screen flex flex-col">
+        <h1 className={`text-3xl font-bold text-center mb-4 ${theme.text}`}>Dante's Inferno</h1>
+        
+        <div className="flex flex-1 gap-4 min-h-0">
+          {/* Left Column - Circle Picker */}
+          <div className="w-48">
+            <CirclePicker
+              selectedCircle={selectedCircle}
+              onCircleSelect={setSelectedCircle}
+              theme={theme}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+
+          {/* Middle Column - Main Image */}
+          <div className={`flex-1 bg-gradient-to-b ${theme.accent} rounded-lg shadow-lg p-4 transition-colors duration-700`}>
+            <div className="relative w-full h-full rounded-lg overflow-hidden">
+              <Image
+                src="/levels.png"
+                alt="Dante's Inferno - The Nine Circles of Hell"
+                fill
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right Column - Circle Details */}
+          <div className="w-96">
+            <CircleDetails 
+              circle={selectedCircleData}
+              theme={theme}
+            />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </main>
   );
 }
