@@ -4,6 +4,7 @@ interface Circle {
   id: number;
   name: string;
   color: string;
+  hoverColor: string;
 }
 
 interface CirclePickerProps {
@@ -13,19 +14,20 @@ interface CirclePickerProps {
     bg: string;
     text: string;
     accent: string;
+    overlay: string;
   };
 }
 
 const circles: Circle[] = [
-  { id: 1, name: "Limbo", color: "bg-stone-800" },
-  { id: 2, name: "Lust", color: "bg-red-800" },
-  { id: 3, name: "Gluttony", color: "bg-yellow-800" },
-  { id: 4, name: "Greed", color: "bg-amber-800" },
-  { id: 5, name: "Wrath", color: "bg-orange-800" },
-  { id: 6, name: "Heresy", color: "bg-purple-800" },
-  { id: 7, name: "Violence", color: "bg-pink-800" },
-  { id: 8, name: "Fraud", color: "bg-indigo-800" },
-  { id: 9, name: "Treachery", color: "bg-blue-800" },
+  { id: 1, name: "Limbo", color: "bg-[#2f3225]", hoverColor: "hover:bg-[#454937]" },
+  { id: 2, name: "Lust", color: "bg-[#8b0000]", hoverColor: "hover:bg-[#a52a2a]" },
+  { id: 3, name: "Gluttony", color: "bg-[#2c1810]", hoverColor: "hover:bg-[#3e5f5c]" },
+  { id: 4, name: "Greed", color: "bg-[#2a1f1f]", hoverColor: "hover:bg-[#b08d57]" },
+  { id: 5, name: "Wrath", color: "bg-[#8b0000]", hoverColor: "hover:bg-[#ff4500]" },
+  { id: 6, name: "Heresy", color: "bg-[#611212]", hoverColor: "hover:bg-[#1c1c1c]" },
+  { id: 7, name: "Violence", color: "bg-[#7b1e1e]", hoverColor: "hover:bg-[#2c0000]" },
+  { id: 8, name: "Fraud", color: "bg-[#2d0031]", hoverColor: "hover:bg-[#000000]" },
+  { id: 9, name: "Treachery", color: "bg-[#0f1c2e]", hoverColor: "hover:bg-[#1f4e69]" },
 ];
 
 const CirclePicker: React.FC<CirclePickerProps> = ({ selectedCircle, onCircleSelect, theme }) => {
@@ -36,13 +38,21 @@ const CirclePicker: React.FC<CirclePickerProps> = ({ selectedCircle, onCircleSel
           key={circle.id}
           onClick={() => onCircleSelect(circle.id)}
           className={`
-            p-2 rounded-md text-left transition-all duration-300
+            p-2 rounded-md text-left transition-all duration-500
             ${selectedCircle === circle.id 
-              ? `${circle.color} ${theme.text} shadow-lg font-semibold scale-105` 
-              : `bg-opacity-50 hover:bg-opacity-75 ${circle.color} ${theme.text}`}
+              ? `${circle.color} scale-105 shadow-lg font-semibold backdrop-blur-sm border border-white/10` 
+              : `${circle.color} bg-opacity-80 hover:bg-opacity-100 ${circle.hoverColor}`}
+            text-white
+            relative overflow-hidden group
           `}
         >
-          <span className="text-sm">{circle.name}</span>
+          <span className="text-sm relative z-10 drop-shadow-md">{circle.name}</span>
+          {/* Animated overlay for selected circle */}
+          {selectedCircle === circle.id && (
+            <div className="absolute inset-0 bg-white opacity-5 animate-pulse" />
+          )}
+          {/* Hover effect */}
+          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
         </button>
       ))}
     </div>
