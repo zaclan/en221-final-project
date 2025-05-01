@@ -318,7 +318,7 @@ export default function Home() {
       
       <div className="container mx-auto px-4 py-4 h-screen flex flex-col relative">
         <h1 className={`text-3xl font-bold text-center mb-4 ${theme.text} drop-shadow-lg`}>
-          Dante's Inferno
+          Dante&apos;s Inferno
         </h1>
         
         <div className="flex flex-1 gap-4 min-h-0">
