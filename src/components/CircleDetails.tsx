@@ -1,5 +1,4 @@
 import React from 'react';
-import SinStats from './SinStats';
 
 interface CircleDetailsProps {
   circle: {
@@ -52,7 +51,7 @@ const CircleDetails: React.FC<CircleDetailsProps> = ({ circle, theme }) => {
             </div>
             <div>
               <h4 className={`font-bold text-base ${theme.text}`}>{circle.featuredSoul.name}</h4>
-              <p className={`${theme.text} opacity-75 italic text-base mt-1`}>"{circle.featuredSoul.quote}"</p>
+              <p className={`${theme.text} opacity-75 italic text-base mt-1`}>&ldquo;{circle.featuredSoul.quote}&rdquo;</p>
             </div>
           </div>
         </div>

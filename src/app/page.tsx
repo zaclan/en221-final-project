@@ -136,7 +136,7 @@ const circlesData = [
   {
     id: 4,
     name: "Greed",
-    description: "The greedy crash huge boulders into one another, shouting, \"Why hoard?\" and \"Why waste?\" — a futile battle over riches long gone.",
+    description: "The greedy crash huge boulders into one another, shouting, &ldquo;Why hoard?&rdquo; and &ldquo;Why waste?&rdquo; — a futile battle over riches long gone.",
     sin: "Hoarding or squandering wealth",
     characterStory: "Many corrupt popes and clergymen fill this circle, punished for hoarding wealth or wasting it through selfish excess. Now they crash stones against each other for eternity.",
     featuredSoul: {
@@ -251,7 +251,7 @@ const circlesData = [
   {
     id: 9,
     name: "Treachery",
-    description: "The final circle is a frozen lake where traitors are trapped in ice. Judas, the greatest betrayer, is chewed eternally in one of Lucifer’s mouths at the very center of Hell.",
+    description: "The final circle is a frozen lake where traitors are trapped in ice. Judas, the greatest betrayer, is chewed eternally in one of Lucifer's mouths at the very center of Hell.",
     sin: "Betrayal of benefactors (final level: Judecca)",
     characterStory: "Judas was one of Jesus's disciples, remembered for betraying him for thirty silver coins. He now suffers the worst fate: chewed eternally in Lucifer's mouth at the heart of Hell.",
     featuredSoul: {
@@ -273,16 +273,48 @@ const circlesData = [
   }
 ];
 
+const BackgroundPattern: React.FC<{ emoji: string }> = ({ emoji }) => {
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      <div className="grid grid-cols-6 gap-12 p-8 animate-float">
+        {[...Array(36)].map((_, i) => (
+          <div key={i} className="flex justify-center">
+            <span className="text-6xl opacity-[0.25] transform rotate-12 transition-all duration-700 hover:opacity-[0.12]">
+              {emoji}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [selectedCircle, setSelectedCircle] = useState(1);
 
   const selectedCircleData = circlesData.find(circle => circle.id === selectedCircle) || circlesData[0];
   const theme = circleThemes[selectedCircle as keyof typeof circleThemes];
 
+  // Map circle IDs to their background emojis
+  const backgroundEmojis: { [key: number]: string } = {
+    1: "👻",  // Limbo
+    2: "💘",  // Lust
+    3: "🍖",  // Gluttony
+    4: "🤑",  // Greed
+    5: "😡",  // Wrath
+    6: "🔥",  // Heresy
+    7: "🗡️",  // Violence
+    8: "🎭",  // Fraud
+    9: "🥶",  // Treachery
+  };
+
   return (
     <main className={`min-h-screen transition-all duration-700 ${theme.bg} font-[Cinzel,serif]`}>
       {/* Theme Overlay */}
       <div className={`absolute inset-0 pointer-events-none ${theme.overlay} transition-all duration-700`} />
+      
+      {/* Background Emoji Pattern */}
+      <BackgroundPattern emoji={backgroundEmojis[selectedCircle]} />
       
       <div className="container mx-auto px-4 py-4 h-screen flex flex-col relative">
         <h1 className={`text-3xl font-bold text-center mb-4 ${theme.text} drop-shadow-lg`}>
