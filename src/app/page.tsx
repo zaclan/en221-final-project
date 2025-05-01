@@ -327,7 +327,6 @@ export default function Home() {
             <CirclePicker
               selectedCircle={selectedCircle}
               onCircleSelect={setSelectedCircle}
-              theme={theme}
             />
           </div>
 
