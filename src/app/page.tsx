@@ -69,6 +69,7 @@ const circlesData = [
     name: "Limbo",
     description: "Great thinkers, poets, and noble people who were never baptized live in this sorrowful place. They are not punished, but forever separated from divine light.",
     sin: "Unbaptized Souls / Virtuous Pagans",
+    characterStory: "Virgil was a Roman poet best known for The Aeneid. Though virtuous and wise, he lived before Christ and remains in Limbo — honored, but forever denied salvation.",
     featuredSoul: {
       name: "Virgil",
       avatar: "👨‍🏫",
@@ -91,6 +92,7 @@ const circlesData = [
     name: "Lust",
     description: "Swept forever in an endless storm, the lustful are punished by being tossed around without rest — just as they were carried away by passion in life.",
     sin: "Carnal Desire",
+    characterStory: "A 13th-century Italian noblewoman, Francesca fell in love with her husband's brother, Paolo. When their affair was discovered, they were both murdered — now swept in Hell's eternal storm.",
     featuredSoul: {
       name: "Francesca da Rimini",
       avatar: "💝",
@@ -113,6 +115,7 @@ const circlesData = [
     name: "Gluttony",
     description: "The gluttons lie in freezing muck, battered by eternal cold rain and filth — their greed for comfort turned into endless discomfort.",
     sin: "Overindulgence in food, drink, and pleasure",
+    characterStory: "Known only by his nickname, Ciacco was a Florentine man infamous for his gluttonous appetites. Now he lies in a swampy, freezing rain — a fitting end for a life of overindulgence.",
     featuredSoul: {
       name: "Ciacco the Florentine",
       avatar: "🍖",
@@ -135,6 +138,7 @@ const circlesData = [
     name: "Greed",
     description: "The greedy crash huge boulders into one another, shouting, \"Why hoard?\" and \"Why waste?\" — a futile battle over riches long gone.",
     sin: "Hoarding or squandering wealth",
+    characterStory: "Many corrupt popes and clergymen fill this circle, punished for hoarding wealth or wasting it through selfish excess. Now they crash stones against each other for eternity.",
     featuredSoul: {
       name: "Unnamed clergymen and popes",
       avatar: "💰",
@@ -157,6 +161,7 @@ const circlesData = [
     name: "Wrath",
     description: "The wrathful thrash in the River Styx, tearing at each other in fury. The sullen drown beneath it, stewing in silent rage.",
     sin: "Rage and wrath",
+    characterStory: "A hot-tempered Florentine nobleman, Filippo was known for his rage and cruelty. In Hell, he thrashes in the River Styx, still lashing out in eternal fury.",
     featuredSoul: {
       name: "Filippo Argenti",
       avatar: "😠",
@@ -179,6 +184,7 @@ const circlesData = [
     name: "Heresy",
     description: "Heretics are sealed in burning tombs, trapped in their false beliefs, denied the peace they denied others.",
     sin: "Denial of the soul's immortality",
+    characterStory: "A powerful Florentine leader and Epicurean, Farinata denied the soul's immortality. He now lies in a burning tomb, trapped in the very doctrine he preached.",
     featuredSoul: {
       name: "Farinata degli Uberti",
       avatar: "⚱️",
@@ -201,6 +207,7 @@ const circlesData = [
     name: "Violence",
     description: "This circle is split into three rings: violence against others (boiling blood), self (turned into trees), and God (burning sands). Pier, a suicide, became a gnarled tree tormented by harpies.",
     sin: "Harm to others, self, or God",
+    characterStory: "Once a trusted advisor to Emperor Frederick II, Pier took his own life after falling from favor. In Hell, suicides become trees — their blood the only way they can speak.",
     featuredSoul: {
       name: "Pier della Vigna",
       avatar: "🌳",
@@ -221,12 +228,13 @@ const circlesData = [
   {
     id: 8,
     name: "Fraud",
-    description: "The fraudulent dwell in a twisted landscape of deceit. Ulysses, punished for his clever lies, is consumed in an eternal flame.",
-    sin: "Deceit, manipulation, falsehood",
+    description: "This circle is filled with deceivers of all kinds, punished in a twisted landscape of burning pits, snakes, and illusions. Pope Nicholas III, among the corrupt clergy, is buried upside down with his feet aflame.",
+    sin: "Deceit and corruption, especially by leaders of trust",
+    characterStory: "Pope Nicholas III used his position to enrich his family. Now he hangs upside down in a pit, his feet aflame — a mockery of baptism, and a warning to corrupt leaders.",
     featuredSoul: {
-      name: "Ulysses (Odysseus)",
-      avatar: "🎭",
-      quote: "I burned with longing to know the world — and now I burn still."
+      name: "Pope Nicholas III",
+      avatar: "🕳",
+      quote: "Are you already here, Boniface? The writing lied, then, by some years."
     },
     stats: {
       severity: 5,
@@ -243,23 +251,24 @@ const circlesData = [
   {
     id: 9,
     name: "Treachery",
-    description: "The lowest level of Hell is frozen. Traitors are locked in ice, farthest from God's warmth. Lucifer himself chews on Brutus, Cassius, and Judas — the greatest betrayers in history.",
-    sin: "Betrayal of kin, country, or benefactor",
+    description: "The final circle is a frozen lake where traitors are trapped in ice. Judas, the greatest betrayer, is chewed eternally in one of Lucifer’s mouths at the very center of Hell.",
+    sin: "Betrayal of benefactors (final level: Judecca)",
+    characterStory: "Judas was one of Jesus's disciples, remembered for betraying him for thirty silver coins. He now suffers the worst fate: chewed eternally in Lucifer's mouth at the heart of Hell.",
     featuredSoul: {
-      name: "Brutus (and Lucifer)",
+      name: "Judas Iscariot",
       avatar: "❄️",
-      quote: "Each mouth chewed a traitor. The tears froze before they could fall."
+      quote: "The worst of sinners lies in the jaws of Dis — the man who kissed and betrayed."
     },
     stats: {
       severity: 5,
       regret: 1,
-      defiance: 4
+      defiance: 5
     },
     alignment: 100,
     emojis: {
       severity: "😈😈😈😈😈",
       regret: "😢",
-      defiance: "🔥🔥🔥🔥"
+      defiance: "🔥🔥🔥🔥🔥"
     }
   }
 ];
